@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { SITE_URL, SITE_NAME, GSC_VERIFICATION } from "../lib/site";
+import Script from "next/script";
+import { SITE_URL, SITE_NAME, GSC_VERIFICATION, ADSENSE_CLIENT } from "../lib/site";
 import SiteHeader from "../components/SiteHeader";
 import SiteFooter from "../components/SiteFooter";
 
@@ -28,6 +29,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteHeader />
         {children}
         <SiteFooter />
+        {/* Google AdSense auto ads. Client-only; no manual slots required. */}
+        <Script
+          id="adsbygoogle-init"
+          strategy="afterInteractive"
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
+          crossOrigin="anonymous"
+        />
       </body>
     </html>
   );

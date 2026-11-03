@@ -3,6 +3,9 @@ export const SITE_URL = "https://pdfsnip.app.workbuddy.host";
 export const SITE_NAME = "PDFSnip";
 export const GSC_VERIFICATION = "VsERTC8HWMQ45eZu0mFROldUdP4bgHbsTfGV7daiEVo";
 
+// Google AdSense publisher ID (account-level). Replace if you use a different account.
+export const ADSENSE_CLIENT = "pub-2622415797490761";
+
 // Top navigation (short labels)
 export const navTools = [
   { href: "/", label: "Extract" },

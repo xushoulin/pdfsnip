@@ -38,6 +38,25 @@ export default function PrivacyPage() {
           </li>
         </ul>
 
+        <h2>Advertising</h2>
+        <p>
+          This site is supported by Google AdSense. Third-party vendors, including Google, use
+          cookies to serve ads based on your prior visits to this or other websites. Google&apos;s
+          use of advertising cookies enables it and its partners to serve ads to you based on your
+          visit to our sites and/or other sites on the Internet.
+        </p>
+        <p>
+          You may opt out of personalized advertising by visiting{" "}
+          <a href="https://www.google.com/settings/ads" rel="noopener" target="_blank">
+            Google Ads Settings
+          </a>
+          , or by visiting{" "}
+          <a href="https://www.aboutads.info/choices/" rel="noopener" target="_blank">
+            www.aboutads.info/choices
+          </a>
+          .
+        </p>
+
         <h2>Third-party services</h2>
         <p>
           The page bundles the open-source{" "}
