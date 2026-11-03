@@ -27,6 +27,9 @@ export const routes = [
   "/extract-vs-split-vs-delete-pages",
   "/how-to-remove-pages-from-a-pdf",
   "/how-to-merge-pdf-files",
+  "/how-to-rotate-a-pdf",
+  "/how-to-split-a-pdf",
+  "/how-to-extract-pages-from-pdf",
   "/about",
   "/privacy",
 ];
