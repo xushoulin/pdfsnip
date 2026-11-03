@@ -22,6 +22,30 @@ export const metadata: Metadata = {
   },
 };
 
+const orgLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE_NAME,
+  url: SITE_URL,
+  logo: `${SITE_URL}/icon.svg`,
+  description:
+    "Free, private PDF page tools — extract, delete, rotate, merge and split — that run 100% in your browser. No upload, no signup, no watermark.",
+  email: "hello@pdfsnip.app",
+  sameAs: ["https://github.com/xushoulin/pdfsnip"],
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: "hello@pdfsnip.app",
+    contactType: "customer support",
+  },
+};
+
+const webSiteLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE_NAME,
+  url: SITE_URL,
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -36,6 +60,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
           crossOrigin="anonymous"
         />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteLd) }} />
       </body>
     </html>
   );
