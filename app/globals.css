@@ -68,7 +68,6 @@ nav.tools a:hover { color: var(--accent); }
 .dropzone:hover, .dropzone.over { border-color: var(--accent); background: var(--accent-soft); }
 .dropzone .big { font-size: 17px; font-weight: 600; }
 .dropzone .hint { color: var(--muted); font-size: 14px; margin-top: 6px; }
-#fileInput { display: none; }
 
 .editor { margin-top: 4px; }
 .fileinfo {

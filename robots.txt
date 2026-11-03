@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://pdfsnip.app.workbuddy.host/sitemap.xml
