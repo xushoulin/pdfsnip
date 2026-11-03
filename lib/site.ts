@@ -25,6 +25,8 @@ export const routes = [
   "/extract-pages-from-pdf-in-chrome",
   "/extract-pages-from-pdf-on-mac",
   "/extract-vs-split-vs-delete-pages",
+  "/how-to-remove-pages-from-a-pdf",
+  "/how-to-merge-pdf-files",
   "/about",
   "/privacy",
 ];
