@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="VsERTC8HWMQ45eZu0mFROldUdP4bgHbsTfGV7daiEVo" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Extract Pages from PDF Free — No Upload, No Signup | PDFSnip</title>
+<meta name="description" content="Extract pages from a PDF in seconds, free. Pick pages visually or type a range like 3, 5, 7-10. Files are processed in your browser and never uploaded. No watermark, no signup.">
+<link rel="canonical" href="https://www.pdfsnip.app/">
+<meta property="og:title" content="Extract Pages from PDF — Free & Private">
+<meta property="og:description" content="Pick pages visually or type a range. 100% in-browser, your files never leave your device.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.pdfsnip.app/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232f5fe0'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>S</text></svg>">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PDFSnip — Extract Pages from PDF",
+  "url": "https://www.pdfsnip.app/",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free online tool to extract pages from a PDF. Works entirely in your browser — files are never uploaded to a server."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is it safe to extract pages from a PDF online?",
+      "acceptedAnswer": { "@type": "Answer", "text": "With PDFSnip it is completely safe: the extraction runs inside your own browser with JavaScript, and your file is never uploaded to any server. It works even when you are offline." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I extract specific pages from a PDF?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Open your PDF in PDFSnip, click the pages you want or type a range such as 3, 5, 7-10, then click Extract. A new PDF containing only those pages is downloaded to your device." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does extracting pages reduce quality?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Pages are copied at original quality — text stays searchable and images keep their original resolution, because the pages are not re-rendered or re-compressed." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is PDFSnip free? Is there a limit?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, it is free with no signup and no watermark. Because processing happens on your own device, the practical limit is your device's memory — very large PDFs simply take a little longer." }
+    }
+  ]
+}
+</script>
+</head>
+<body data-mode="extract">
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="/"><span class="dot"></span>PDFSnip</a>
+    <nav class="tools">
+      <a href="/">Extract</a>
+      <a href="/delete-pages-from-pdf.html">Delete</a>
+      <a href="/rotate-pdf.html">Rotate</a>
+      <a href="/merge-pdf.html">Merge</a>
+      <a href="/split-pdf.html">Split</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <h1>Extract Pages from PDF</h1>
+    <p class="sub">Pick the pages you need — or type a range like <b>3, 5, 7-10</b> — and get a new PDF in seconds.</p>
+    <div class="badges">
+      <span class="badge">100% in your browser</span>
+      <span class="badge">Files never uploaded</span>
+      <span class="badge">Free · No signup · No watermark</span>
+    </div>
+  </div>
+
+  <section class="tool-card">
+    <div id="dropzone" class="dropzone">
+      <div class="big">Drop your PDF here, or click to choose a file</div>
+      <div class="hint">Your file stays on this device — nothing is uploaded.</div>
+    </div>
+    <input type="file" id="fileInput" accept="application/pdf,.pdf">
+
+    <div id="editor" class="editor" style="display:none;">
+      <div class="fileinfo">
+        <span><strong id="fileName"></strong></span>
+        <span id="fileMeta"></span>
+      </div>
+      <p id="gridHint" class="range-help" style="margin:0 0 6px;"></p>
+      <div id="pageGrid" class="grid"></div>
+      <label class="fld" for="rangeInput">Pages to extract</label>
+      <input type="text" id="rangeInput" placeholder="e.g. 1-3, 5, 8-10" autocomplete="off">
+      <p class="range-help">Separate pages or ranges with commas. Clicking pages above fills this in for you.</p>
+      <div class="btnrow">
+        <button class="btn" id="actionBtn">Extract pages</button>
+        <button class="btn secondary" id="againBtn">Choose another file</button>
+      </div>
+    </div>
+    <div id="status" class="status" aria-live="polite"></div>
+  </section>
+
+  <article class="content">
+    <div class="trust">
+      <div class="item"><b>Private by design</b><span>Processing happens locally in your browser. Your PDF never touches a server — it even works offline.</span></div>
+      <div class="item"><b>Original quality</b><span>Pages are copied, not re-rendered. Text stays searchable, images keep full resolution.</span></div>
+      <div class="item"><b>Fast for big files</b><span>No upload wait, no 50 MB limit. A 200-page document opens in the same time your PDF reader needs.</span></div>
+    </div>
+
+    <h2>How to extract pages from a PDF</h2>
+    <ol class="steps">
+      <li><b>Open your file.</b> Drag the PDF onto the box above or click to browse. It opens instantly on your device.</li>
+      <li><b>Select pages.</b> Click the page numbers, or type a range such as <b>2-5, 9</b>. Ranges can be in any order.</li>
+      <li><b>Extract and download.</b> Click “Extract pages” — a new PDF with only the selected pages is saved to your device. The original file is untouched.</li>
+    </ol>
+
+    <h2>Extract vs. split: which one do you need?</h2>
+    <p><b>Extracting</b> copies the pages you choose into one new PDF and leaves the original unchanged — ideal when you need pages 5–8 of a 200-page contract. <b>Splitting</b> divides a PDF into several files, for example one file per page. If that is what you are after, use our <a href="/split-pdf.html">Split PDF</a> tool instead.</p>
+
+    <h2>Frequently asked questions</h2>
+    <div class="faq">
+      <details>
+        <summary>Is it safe to extract pages from a PDF online?</summary>
+        <p>With PDFSnip, yes — because there is no “online” step. The tool runs entirely in your browser and your file is never sent anywhere. It even works with your Wi-Fi switched off.</p>
+      </details>
+      <details>
+        <summary>Can I extract pages from a scanned PDF?</summary>
+        <p>Yes. Scanned PDFs are just images inside a PDF container, and pages are copied as-is, at original quality.</p>
+      </details>
+      <details>
+        <summary>Can I extract non-consecutive pages, like pages 2, 5 and 9?</summary>
+        <p>Absolutely. Click each page you want, or type <b>2, 5, 9</b> in the range box. Mixed formats like <b>1-3, 7, 10-12</b> work too.</p>
+      </details>
+      <details>
+        <summary>Will bookmarks and links survive?</summary>
+        <p>Page content, text and images are preserved perfectly. Document-level bookmarks usually reference the original structure and are not carried over. Internal links between extracted pages may stop working.</p>
+      </details>
+      <details>
+        <summary>Does it work on iPhone, Android and Chromebook?</summary>
+        <p>Yes. Any modern browser works — there is nothing to install. On mobile, the extracted PDF is saved to your Downloads or offered as a share target.</p>
+      </details>
+    </div>
+
+    <h2>More free PDF tools</h2>
+    <ul>
+      <li><a href="/delete-pages-from-pdf.html">Delete pages from a PDF</a> — remove the pages you don't want.</li>
+      <li><a href="/rotate-pdf.html">Rotate PDF pages</a> — fix sideways scans in one click.</li>
+      <li><a href="/merge-pdf.html">Merge PDF files</a> — combine several PDFs in any order.</li>
+      <li><a href="/split-pdf.html">Split a PDF</a> — one file per page or every N pages.</li>
+    </ul>
+  </article>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <b>Tools</b>
+        <a href="/">Extract Pages</a>
+        <a href="/delete-pages-from-pdf.html">Delete Pages</a>
+        <a href="/rotate-pdf.html">Rotate PDF</a>
+        <a href="/merge-pdf.html">Merge PDF</a>
+        <a href="/split-pdf.html">Split PDF</a>
+      </div>
+      <div>
+        <b>Guides</b>
+        <a href="/extract-pages-from-pdf-in-chrome.html">Extract in Chrome</a>
+        <a href="/extract-pages-from-pdf-on-mac.html">Extract on Mac</a>
+        <a href="/extract-vs-split-vs-delete-pages.html">Extract vs Split vs Delete</a>
+      </div>
+      <div>
+        <b>About</b>
+        <a href="/privacy.html">Privacy</a>
+      </div>
+    </div>
+    <p class="fine">© 2026 PDFSnip. All processing happens locally in your browser — your documents never leave your device.</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="/assets/tools.js"></script>
+</body>
+</html>

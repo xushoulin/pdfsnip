@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="VsERTC8HWMQ45eZu0mFROldUdP4bgHbsTfGV7daiEVo" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Split PDF Online Free — Separate Pages | PDFSnip</title>
+<meta name="description" content="Split a PDF online for free: one file per page, a file every N pages, or custom ranges. 100% in your browser — no upload, no signup, no watermark.">
+<link rel="canonical" href="https://www.pdfsnip.app/split-pdf.html">
+<meta property="og:title" content="Split PDF Online — Free & Private">
+<meta property="og:description" content="One file per page, every N pages, or custom ranges. 100% in-browser — files never leave your device.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.pdfsnip.app/split-pdf.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232f5fe0'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>S</text></svg>">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I split a PDF into separate pages?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Open the PDF in PDFSnip, choose 'One file per page' and click Split. Each page is saved as its own PDF and downloads to your device automatically." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between splitting and extracting?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Splitting produces multiple files from one PDF; extracting copies selected pages into a single new PDF. If you only need a few pages as one document, use the Extract Pages tool instead." }
+    }
+  ]
+}
+</script>
+</head>
+<body data-mode="split">
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="/"><span class="dot"></span>PDFSnip</a>
+    <nav class="tools">
+      <a href="/">Extract</a>
+      <a href="/delete-pages-from-pdf.html">Delete</a>
+      <a href="/rotate-pdf.html">Rotate</a>
+      <a href="/merge-pdf.html">Merge</a>
+      <a href="/split-pdf.html">Split</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <h1>Split PDF Online</h1>
+    <p class="sub">Separate a PDF into individual pages, fixed-size chunks, or custom ranges.</p>
+    <div class="badges">
+      <span class="badge">100% in your browser</span>
+      <span class="badge">Files never uploaded</span>
+      <span class="badge">Free · No signup · No watermark</span>
+    </div>
+  </div>
+
+  <section class="tool-card">
+    <div id="dropzone" class="dropzone">
+      <div class="big">Drop your PDF here, or click to choose a file</div>
+      <div class="hint">Your file stays on this device — nothing is uploaded.</div>
+    </div>
+    <input type="file" id="fileInput" accept="application/pdf,.pdf">
+
+    <div id="editor" class="editor" style="display:none;">
+      <div class="fileinfo">
+        <span><strong id="fileName"></strong></span>
+        <span id="fileMeta"></span>
+      </div>
+      <label class="fld">Split mode</label>
+      <div class="radio-row">
+        <label><input type="radio" name="splitMode" value="each" checked> One file per page</label>
+        <label><input type="radio" name="splitMode" value="every"> A file every N pages</label>
+        <label><input type="radio" name="splitMode" value="ranges"> Custom ranges (one file per page listed)</label>
+      </div>
+      <div id="everyNBox" style="display:none;">
+        <label class="fld" for="everyN">Pages per file</label>
+        <input type="number" id="everyN" min="1" value="2" style="max-width:140px;">
+      </div>
+      <div id="rangeBox" style="display:none;">
+        <label class="fld" for="rangeInput">Pages to split out</label>
+        <input type="text" id="rangeInput" placeholder="e.g. 1-3, 5, 8-10" autocomplete="off">
+        <p class="range-help">Each listed page or range becomes its own PDF file.</p>
+      </div>
+      <div class="btnrow">
+        <button class="btn" id="actionBtn">Split PDF</button>
+        <button class="btn secondary" id="againBtn">Choose another file</button>
+      </div>
+    </div>
+    <div id="status" class="status" aria-live="polite"></div>
+  </section>
+
+  <article class="content">
+    <h2>How to split a PDF</h2>
+    <ol class="steps">
+      <li><b>Open your file</b> — drag it in, it never leaves your device.</li>
+      <li><b>Pick a mode:</b> one file per page, a chunk every N pages, or specific pages only.</li>
+      <li><b>Split.</b> Each result downloads automatically as a separate PDF file.</li>
+    </ol>
+
+    <h2>Related tools</h2>
+    <ul>
+      <li><a href="/">Extract pages into one PDF</a></li>
+      <li><a href="/merge-pdf.html">Merge PDF files back together</a></li>
+      <li><a href="/delete-pages-from-pdf.html">Delete pages from a PDF</a></li>
+    </ul>
+  </article>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <b>Tools</b>
+        <a href="/">Extract Pages</a>
+        <a href="/delete-pages-from-pdf.html">Delete Pages</a>
+        <a href="/rotate-pdf.html">Rotate PDF</a>
+        <a href="/merge-pdf.html">Merge PDF</a>
+        <a href="/split-pdf.html">Split PDF</a>
+      </div>
+      <div>
+        <b>Guides</b>
+        <a href="/extract-pages-from-pdf-in-chrome.html">Extract in Chrome</a>
+        <a href="/extract-pages-from-pdf-on-mac.html">Extract on Mac</a>
+        <a href="/extract-vs-split-vs-delete-pages.html">Extract vs Split vs Delete</a>
+      </div>
+      <div>
+        <b>About</b>
+        <a href="/privacy.html">Privacy</a>
+      </div>
+    </div>
+    <p class="fine">© 2026 PDFSnip. All processing happens locally in your browser — your documents never leave your device.</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="/assets/tools.js"></script>
+</body>
+</html>

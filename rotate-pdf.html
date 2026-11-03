@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="VsERTC8HWMQ45eZu0mFROldUdP4bgHbsTfGV7daiEVo" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rotate PDF Pages Free — Fix Sideways Scans Online | PDFSnip</title>
+<meta name="description" content="Rotate PDF pages by 90, 180 or 270 degrees, for selected pages or the whole file. Free, no signup, and 100% in your browser — your PDF is never uploaded.">
+<link rel="canonical" href="https://www.pdfsnip.app/rotate-pdf.html">
+<meta property="og:title" content="Rotate PDF Pages — Free & Private">
+<meta property="og:description" content="Fix sideways scans in one click. Rotates in your browser — files never leave your device.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.pdfsnip.app/rotate-pdf.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232f5fe0'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>S</text></svg>">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I rotate just some pages of a PDF?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Open the PDF in PDFSnip, click the pages to rotate (or leave the range empty to rotate all pages), choose 90, 180 or 270 degrees and click Rotate. Rotation is saved into the file, not just the view." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does rotating re-compress or reduce quality?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Rotation only changes the page orientation attribute — the content is untouched, so quality is identical." }
+    }
+  ]
+}
+</script>
+</head>
+<body data-mode="rotate">
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="/"><span class="dot"></span>PDFSnip</a>
+    <nav class="tools">
+      <a href="/">Extract</a>
+      <a href="/delete-pages-from-pdf.html">Delete</a>
+      <a href="/rotate-pdf.html">Rotate</a>
+      <a href="/merge-pdf.html">Merge</a>
+      <a href="/split-pdf.html">Split</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <h1>Rotate PDF Pages</h1>
+    <p class="sub">Fix sideways scans in one click — rotate everything, or just the pages you pick.</p>
+    <div class="badges">
+      <span class="badge">100% in your browser</span>
+      <span class="badge">Files never uploaded</span>
+      <span class="badge">Free · No signup · No watermark</span>
+    </div>
+  </div>
+
+  <section class="tool-card">
+    <div id="dropzone" class="dropzone">
+      <div class="big">Drop your PDF here, or click to choose a file</div>
+      <div class="hint">Your file stays on this device — nothing is uploaded.</div>
+    </div>
+    <input type="file" id="fileInput" accept="application/pdf,.pdf">
+
+    <div id="editor" class="editor" style="display:none;">
+      <div class="fileinfo">
+        <span><strong id="fileName"></strong></span>
+        <span id="fileMeta"></span>
+      </div>
+      <div id="pageGrid" class="grid"></div>
+      <label class="fld" for="rangeInput">Pages to rotate (leave empty to rotate all)</label>
+      <input type="text" id="rangeInput" placeholder="e.g. 3, 7-9 — or empty for all pages" autocomplete="off">
+      <label class="fld" for="rotateAngle">Rotation</label>
+      <select id="rotateAngle">
+        <option value="90">90° clockwise</option>
+        <option value="180">180°</option>
+        <option value="270">90° counterclockwise</option>
+      </select>
+      <div class="btnrow">
+        <button class="btn" id="actionBtn">Rotate</button>
+        <button class="btn secondary" id="againBtn">Choose another file</button>
+      </div>
+    </div>
+    <div id="status" class="status" aria-live="polite"></div>
+  </section>
+
+  <article class="content">
+    <h2>How to rotate PDF pages</h2>
+    <ol class="steps">
+      <li><b>Open your file</b> — drag it into the box above, it never leaves your device.</li>
+      <li><b>Choose pages</b> (optional) and a rotation of 90°, 180° or 270°.</li>
+      <li><b>Rotate and download.</b> The rotation is permanently saved in the file, so it shows correctly in every PDF reader.</li>
+    </ol>
+
+    <h2>Related tools</h2>
+    <ul>
+      <li><a href="/">Extract pages from a PDF</a></li>
+      <li><a href="/delete-pages-from-pdf.html">Delete pages from a PDF</a></li>
+      <li><a href="/merge-pdf.html">Merge PDF files</a></li>
+    </ul>
+  </article>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <b>Tools</b>
+        <a href="/">Extract Pages</a>
+        <a href="/delete-pages-from-pdf.html">Delete Pages</a>
+        <a href="/rotate-pdf.html">Rotate PDF</a>
+        <a href="/merge-pdf.html">Merge PDF</a>
+        <a href="/split-pdf.html">Split PDF</a>
+      </div>
+      <div>
+        <b>Guides</b>
+        <a href="/extract-pages-from-pdf-in-chrome.html">Extract in Chrome</a>
+        <a href="/extract-pages-from-pdf-on-mac.html">Extract on Mac</a>
+        <a href="/extract-vs-split-vs-delete-pages.html">Extract vs Split vs Delete</a>
+      </div>
+      <div>
+        <b>About</b>
+        <a href="/privacy.html">Privacy</a>
+      </div>
+    </div>
+    <p class="fine">© 2026 PDFSnip. All processing happens locally in your browser — your documents never leave your device.</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="/assets/tools.js"></script>
+</body>
+</html>
