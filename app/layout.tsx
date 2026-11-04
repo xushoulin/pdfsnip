@@ -19,6 +19,19 @@ export const metadata: Metadata = {
     type: "website",
     siteName: SITE_NAME,
     url: SITE_URL,
+    images: [
+      {
+        url: "/og.png",
+        alt: "PDFSnip — free, private, in-browser PDF tools",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "PDFSnip — Free, Private PDF Page Tools",
+    description:
+      "Extract, delete, rotate, merge and split PDF pages — 100% in your browser. Files never uploaded.",
+    images: ["/og.png"],
   },
 };
 
