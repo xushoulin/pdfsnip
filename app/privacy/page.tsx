@@ -69,7 +69,7 @@ export default function PrivacyPage() {
 
         <h2>Contact</h2>
         <p>
-          Questions about this policy? Reach us at <b>hello@pdfsnip.app</b>.
+          Questions about this policy? Reach us at <b>hello@pdfsnip.shoulin.shop</b>.
         </p>
         <p>
           <i>Last updated: October 2026</i>

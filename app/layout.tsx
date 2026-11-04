@@ -43,11 +43,11 @@ const orgLd = {
   logo: `${SITE_URL}/icon.svg`,
   description:
     "Free, private PDF page tools — extract, delete, rotate, merge and split — that run 100% in your browser. No upload, no signup, no watermark.",
-  email: "hello@pdfsnip.app",
+  email: "hello@pdfsnip.shoulin.shop",
   sameAs: ["https://github.com/xushoulin/pdfsnip"],
   contactPoint: {
     "@type": "ContactPoint",
-    email: "hello@pdfsnip.app",
+    email: "hello@pdfsnip.shoulin.shop",
     contactType: "customer support",
   },
 };

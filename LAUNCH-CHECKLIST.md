@@ -30,10 +30,11 @@ PDF 处理仍 100% 在浏览器内用 pdf-lib 完成（npm 打包，不再依赖
 所有公开 URL 集中在 `lib/site.ts` 的 `routes` 数组，`app/sitemap.ts` / `app/robots.ts` 自动生成。
 **换域名只改 `lib/site.ts` 里的 `SITE_URL` 一处即可。**
 
-## 第 1 步：买域名（当天完成）
+## 第 1 步：买域名（已完成 ✅）
 
-- 建议顺序查：`pdfsnip.com` → `pdfsnip.app` → `pdfsnip.io`。购买商推荐 **Cloudflare**（成本价、自带 CDN）或 Spaceship。
-- 确定域名后，改 `lib/site.ts` 的 `SITE_URL = "https://你的域名"`，重新构建即可（旧占位域名 `www.pdfsnip.app` 已不存在）。
+- 已定域名：**`pdfsnip.shoulin.shop`**。已在 `lib/site.ts` 把 `SITE_URL` 改为 `"https://pdfsnip.shoulin.shop"`（全站 canonical / sitemap / OG / robots 自动联动）。
+- 联系邮箱同步改为 `hello@pdfsnip.shoulin.shop`（about / privacy / layout 的 Organization schema 均已更新）。
+- 如需换域名，仍只改 `lib/site.ts` 的 `SITE_URL` 一处即可。
 
 ## 第 2 步：部署（推荐 Vercel，免费）
 
@@ -47,7 +48,7 @@ PDF 处理仍 100% 在浏览器内用 pdf-lib 完成（npm 打包，不再依赖
 - 自动广告已在 `app/layout.tsx` 用 `next/script` 加载（`adsbygoogle.js?client=pub-2622415797490761`）。
 - `lib/site.ts` 的 `ADSENSE_CLIENT` 就是你的发布商 ID，换账号只改这一处。
 - 隐私页 `app/privacy/page.tsx` 已含 **Advertising** 披露段落（Google 个性化广告 + 退出链接），满足审核要求。
-- 你需要做的：登录 [AdSense](https://www.google.com/adsense) → 站点 → 添加 `pdfsnip.app.workbuddy.host`（或你的真实域名）→
+- 你需要做的：登录 [AdSense](https://www.google.com/adsense) → 站点 → 添加 `pdfsnip.shoulin.shop`（新域名） →
   等审核通过。审核通过后自动广告即开始展示，无需改代码。
 - 想放**固定广告位**（非自动）：用 `components/AdUnit.tsx`，在页面 JSX 里 `<AdUnit slot="你的slotID" />`，
   slot 在 AdSense 后台「按广告单元」创建后获得。

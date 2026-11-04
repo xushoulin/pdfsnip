@@ -1,5 +1,5 @@
 // Central site configuration. Change SITE_URL here when you move to a real domain.
-export const SITE_URL = "https://pdfsnip.app.workbuddy.host";
+export const SITE_URL = "https://pdfsnip.shoulin.shop";
 export const SITE_NAME = "PDFSnip";
 export const GSC_VERIFICATION = "VsERTC8HWMQ45eZu0mFROldUdP4bgHbsTfGV7daiEVo";
 

@@ -66,7 +66,7 @@ export default function AboutPage() {
         <h2>Contact</h2>
         <p>
           Found a bug, or want a tool we don&apos;t have yet? Email us at{" "}
-          <b>hello@pdfsnip.app</b> — we read everything and reply to real messages.
+          <b>hello@pdfsnip.shoulin.shop</b> — we read everything and reply to real messages.
         </p>
         <p>
           <i>Last updated: October 2026</i>
