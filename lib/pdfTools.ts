@@ -1,5 +1,5 @@
 // PDFSnip — 100% client-side PDF operations, powered by pdf-lib (bundled, no CDN).
-import { PDFDocument, degrees } from "pdf-lib";
+import { PDFDocument, degrees, rgb, StandardFonts } from "pdf-lib";
 
 /* Parse "1-3, 5, 8-10" into an ordered, de-duplicated list of page numbers. */
 export function parseRanges(str: string, max: number): number[] {
@@ -131,4 +131,105 @@ export async function mergePdfs(files: { bytes: Uint8Array }[]): Promise<Uint8Ar
     pages.forEach((p) => out.addPage(p));
   }
   return out.save();
+}
+
+/* ---------- Page numbers ---------- */
+
+export type NumberPosition =
+  | "bottom-center"
+  | "bottom-right"
+  | "bottom-left"
+  | "top-center"
+  | "top-right"
+  | "top-left";
+
+export type NumberFormat = "n" | "n-of-total" | "page-n" | "page-n-of-total";
+
+export interface NumberOptions {
+  position: NumberPosition;
+  format: NumberFormat;
+  start: number;
+  fontSize: number;
+  margin: number;
+  skipFirst: boolean;
+}
+
+function numberLabel(format: NumberFormat, n: number, total: number): string {
+  switch (format) {
+    case "n":
+      return String(n);
+    case "n-of-total":
+      return `${n} / ${total}`;
+    case "page-n":
+      return `Page ${n}`;
+    default:
+      return `Page ${n} of ${total}`;
+  }
+}
+
+/**
+ * Stamp page numbers onto a PDF. Handles /Rotate pages so the text is upright
+ * and correctly positioned on scanned documents too.
+ */
+export async function addPageNumbers(
+  srcBytes: Uint8Array,
+  opts: NumberOptions
+): Promise<Uint8Array> {
+  const doc = await PDFDocument.load(srcBytes, { ignoreEncryption: true });
+  const font = await doc.embedFont(StandardFonts.Helvetica);
+  const pages = doc.getPages();
+  const numbered = Math.max(1, pages.length - (opts.skipFirst ? 1 : 0));
+  const size = opts.fontSize > 0 ? opts.fontSize : 11;
+  const margin = opts.margin >= 0 ? opts.margin : 28;
+  let counter = opts.start;
+
+  pages.forEach((page, idx) => {
+    if (opts.skipFirst && idx === 0) return;
+    const n = counter++;
+    const text = numberLabel(opts.format, n, numbered);
+
+    const { width: w, height: h } = page.getSize();
+    const rot = (((page.getRotation().angle % 360) + 360) % 360) as 0 | 90 | 180 | 270;
+    const sideways = rot === 90 || rot === 270;
+
+    // Work in "visual" coordinates (what the reader sees).
+    const vw = sideways ? h : w;
+    const vh = sideways ? w : h;
+    const tw = font.widthOfTextAtSize(text, size);
+    const th = font.heightAtSize(size);
+
+    let vx = margin;
+    let vy = margin;
+    if (opts.position.endsWith("center")) vx = (vw - tw) / 2;
+    if (opts.position.endsWith("right")) vx = vw - tw - margin;
+    if (opts.position.startsWith("top")) vy = vh - margin - th;
+
+    // Map visual -> unrotated page coordinates.
+    let px: number;
+    let py: number;
+    if (rot === 90) {
+      px = w - vy;
+      py = vx;
+    } else if (rot === 180) {
+      px = w - vx;
+      py = h - vy;
+    } else if (rot === 270) {
+      px = vy;
+      py = h - vx;
+    } else {
+      px = vx;
+      py = vy;
+    }
+
+    page.drawText(text, {
+      x: px,
+      y: py,
+      size,
+      font,
+      color: rgb(0.2, 0.2, 0.2),
+      rotate: degrees(rot),
+    });
+  });
+
+  return doc.save();
 }

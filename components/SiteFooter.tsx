@@ -6,6 +6,7 @@ const tools = [
   { href: "/rotate-pdf", label: "Rotate PDF" },
   { href: "/merge-pdf", label: "Merge PDF" },
   { href: "/split-pdf", label: "Split PDF" },
+  { href: "/add-page-numbers-to-pdf", label: "Add Page Numbers" },
 ];
 
 const guides = [

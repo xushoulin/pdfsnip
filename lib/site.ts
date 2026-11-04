@@ -13,6 +13,7 @@ export const navTools = [
   { href: "/rotate-pdf", label: "Rotate" },
   { href: "/merge-pdf", label: "Merge" },
   { href: "/split-pdf", label: "Split" },
+  { href: "/add-page-numbers-to-pdf", label: "Page Numbers" },
 ];
 
 // All public routes, used by the sitemap.
@@ -22,6 +23,7 @@ export const routes = [
   "/rotate-pdf",
   "/merge-pdf",
   "/split-pdf",
+  "/add-page-numbers-to-pdf",
   "/extract-pages-from-pdf-in-chrome",
   "/extract-pages-from-pdf-on-mac",
   "/extract-vs-split-vs-delete-pages",
@@ -30,6 +32,7 @@ export const routes = [
   "/how-to-rotate-a-pdf",
   "/how-to-split-a-pdf",
   "/how-to-extract-pages-from-pdf",
+  "/how-to-add-page-numbers-to-a-pdf",
   "/about",
   "/privacy",
 ];
