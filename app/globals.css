@@ -139,6 +139,10 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
 }
 .fileitem .name { flex: 1; word-break: break-all; }
 .fileitem .order { color: var(--muted); font-size: 13px; }
+.fileitem .thumb {
+  width: 40px; height: 40px; object-fit: cover; flex-shrink: 0;
+  border-radius: 6px; border: 1px solid var(--line); background: #fff;
+}
 
 .radio-row { display: flex; flex-direction: column; gap: 8px; margin: 8px 0; }
 .radio-row label { display: flex; align-items: center; gap: 8px; font-size: 15px; cursor: pointer; }

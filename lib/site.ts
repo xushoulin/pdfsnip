@@ -14,6 +14,7 @@ export const navTools = [
   { href: "/merge-pdf", label: "Merge" },
   { href: "/split-pdf", label: "Split" },
   { href: "/add-page-numbers-to-pdf", label: "Page Numbers" },
+  { href: "/jpg-to-pdf", label: "JPG to PDF" },
 ];
 
 // All public routes, used by the sitemap.
@@ -24,6 +25,7 @@ export const routes = [
   "/merge-pdf",
   "/split-pdf",
   "/add-page-numbers-to-pdf",
+  "/jpg-to-pdf",
   "/extract-pages-from-pdf-in-chrome",
   "/extract-pages-from-pdf-on-mac",
   "/extract-vs-split-vs-delete-pages",
@@ -33,6 +35,7 @@ export const routes = [
   "/how-to-split-a-pdf",
   "/how-to-extract-pages-from-pdf",
   "/how-to-add-page-numbers-to-a-pdf",
+  "/how-to-convert-jpg-to-pdf",
   "/about",
   "/privacy",
 ];

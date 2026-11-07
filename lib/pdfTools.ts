@@ -133,6 +133,82 @@ export async function mergePdfs(files: { bytes: Uint8Array }[]): Promise<Uint8Ar
   return out.save();
 }
 
+/* ---------- Images (JPG/PNG) → PDF ---------- */
+
+export type ImagePageSize = "a4" | "letter" | "fit";
+export type ImageOrientation = "auto" | "portrait" | "landscape";
+
+export interface ImageToPdfOptions {
+  pageSize: ImagePageSize;
+  orientation: ImageOrientation; // only used for a4/letter
+  margin: number; // pt, only used for a4/letter
+}
+
+export interface ImageInput {
+  bytes: Uint8Array;
+  /** MIME type or filename — used to pick JPG vs PNG embedding. */
+  type: string;
+}
+
+const FIXED_PAGE_SIZES: Record<"a4" | "letter", [number, number]> = {
+  a4: [595.28, 841.89],
+  letter: [612, 792],
+};
+
+/**
+ * Convert a list of JPG/PNG images into a single PDF, one image per page,
+ * in the given order. 100% client-side.
+ *
+ * pageSize:
+ *  - "a4"/"letter": image is scaled (aspect ratio preserved) to fit inside
+ *    the page minus the margin, and centered.
+ *  - "fit": page is sized to the image itself (1 image px = 0.75 pt, i.e. 96 dpi).
+ */
+export async function imagesToPdf(
+  files: ImageInput[],
+  opts: ImageToPdfOptions
+): Promise<Uint8Array> {
+  if (!files.length) throw new Error("No images provided.");
+  const out = await PDFDocument.create();
+  const margin = opts.margin >= 0 ? opts.margin : 24;
+
+  for (const f of files) {
+    const img = /png/i.test(f.type)
+      ? await out.embedPng(f.bytes)
+      : await out.embedJpg(f.bytes);
+    const iw = img.width;
+    const ih = img.height;
+
+    if (opts.pageSize === "fit") {
+      const scale = 0.75;
+      const page = out.addPage([iw * scale, ih * scale]);
+      page.drawImage(img, { x: 0, y: 0, width: iw * scale, height: ih * scale });
+      continue;
+    }
+
+    let [pw, ph] = FIXED_PAGE_SIZES[opts.pageSize];
+    let landscape = iw > ih; // auto: follow the image's own aspect
+    if (opts.orientation === "portrait") landscape = false;
+    if (opts.orientation === "landscape") landscape = true;
+    if (landscape) [pw, ph] = [ph, pw];
+
+    const page = out.addPage([pw, ph]);
+    const availW = Math.max(1, pw - margin * 2);
+    const availH = Math.max(1, ph - margin * 2);
+    const scale = Math.min(availW / iw, availH / ih);
+    const dw = iw * scale;
+    const dh = ih * scale;
+    page.drawImage(img, {
+      x: (pw - dw) / 2,
+      y: (ph - dh) / 2,
+      width: dw,
+      height: dh,
+    });
+  }
+
+  return out.save();
+}
+
 /* ---------- Page numbers ---------- */
 
 export type NumberPosition =
