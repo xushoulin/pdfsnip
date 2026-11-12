@@ -169,6 +169,56 @@ article.content li { margin: 5px 0; }
 .trust .item b { display: block; margin-bottom: 5px; font-size: 15px; }
 .trust .item span { color: var(--muted); font-size: 14px; }
 
+/* --- long-form content blocks ------------------------------------------- */
+.tbl-wrap { overflow-x: auto; margin: 16px 0; -webkit-overflow-scrolling: touch; }
+table.tbl {
+  width: 100%; border-collapse: collapse; font-size: 14.5px;
+  background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+  overflow: hidden;
+}
+table.tbl th, table.tbl td {
+  text-align: left; padding: 10px 13px; border-bottom: 1px solid var(--line);
+  vertical-align: top; color: #333c4e;
+}
+table.tbl th { background: #f2f4f9; font-weight: 600; color: var(--ink); font-size: 14px; white-space: nowrap; }
+table.tbl tr:last-child td { border-bottom: none; }
+table.tbl td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.note {
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  padding: 13px 16px; border-radius: 0 8px 8px 0;
+  margin: 16px 0; font-size: 14.5px; color: #26324a;
+}
+.note b { color: var(--ink); }
+.note.warn { border-left-color: #d99400; background: #fdf5e3; }
+.note.warn b { color: #6b4a00; }
+
+.fig { margin: 18px 0; }
+.fig svg { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+.fig figcaption { font-size: 13px; color: var(--muted); margin-top: 7px; }
+
+.kbd {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12.5px; background: #eef1f7; border: 1px solid #dbe1ec;
+  border-bottom-width: 2px; border-radius: 4px; padding: 1px 5px; color: #2b3550;
+}
+code.inline {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px; background: #eef1f7; border-radius: 4px; padding: 1.5px 5px; color: #1f2a44;
+}
+.checklist { list-style: none; padding-left: 0; }
+.checklist li { padding-left: 26px; position: relative; }
+.checklist li::before {
+  content: "✓"; position: absolute; left: 4px; top: 0;
+  color: var(--ok); font-weight: 700;
+}
+.byline {
+  font-size: 13.5px; color: var(--muted); margin: 0 0 18px;
+  padding-bottom: 14px; border-bottom: 1px solid var(--line);
+}
+.byline a { color: var(--muted); text-decoration: underline; }
+
 footer.site {
   border-top: 1px solid var(--line);
   background: var(--card);

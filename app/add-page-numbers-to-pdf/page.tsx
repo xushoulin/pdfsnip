@@ -4,65 +4,83 @@ import PageNumbersTool from "../../components/PageNumbersTool";
 export const metadata: Metadata = {
   title: "Add Page Numbers to PDF Free — No Upload, No Signup",
   description:
-    "Add page numbers to any PDF in seconds. Choose position, format (1, 1/12, Page 1 of 12), font size and start number. 100% in your browser — your file is never uploaded.",
+    "Stamp page numbers onto a PDF: six positions, four formats, custom start number, skip-the-cover option. Runs in your browser — the file is never uploaded.",
   alternates: { canonical: "/add-page-numbers-to-pdf" },
   openGraph: {
     title: "Add Page Numbers to PDF — Free & Private",
-    description:
-      "Number PDF pages in your browser: 6 positions, 4 formats, custom start number. No upload, no signup, no watermark.",
+    description: "Six positions, four formats, custom start value. Nothing is uploaded.",
     url: "/add-page-numbers-to-pdf",
     type: "website",
   },
 };
 
-const faq = [
-  {
-    q: "How do I add page numbers to a PDF for free?",
-    a: "Open the PDF in PDFSnip, pick a position and a format such as 1 / 12 or Page 1 of 12, then click Add page numbers. The numbered file downloads immediately. There is no signup, no watermark and no upload — everything runs in your browser.",
-  },
-  {
-    q: "Can I start numbering from a page other than 1?",
-    a: "Yes. Set the start number to anything you like (0, 1, 5, 12…). This is useful when a PDF is the second half of a printed document and should continue the earlier numbering.",
-  },
-  {
-    q: "How do I skip the cover page when numbering?",
-    a: "Tick Skip the cover page. The first page is left unnumbered and the numbering starts on page two, so the total count also excludes the cover.",
-  },
-  {
-    q: "Does adding page numbers reduce PDF quality or file size?",
-    a: "No. Page numbers are added as a small text layer on top of each page — the original content, images and quality are untouched. File size grows by only a few kilobytes.",
-  },
-  {
-    q: "Will the numbers show up on scanned or rotated pages?",
-    a: "Yes. PDFSnip detects pages that carry a rotation flag (common in phone scans) and draws the number upright in the correct corner, so it reads the same way as the rest of the file.",
-  },
-  {
-    q: "Is it safe to number confidential documents here?",
-    a: "Yes. There is no server involved: the PDF is read, modified and saved entirely inside your browser tab. Nothing is uploaded, stored or logged, which makes it safe for contracts, medical records and financial statements.",
-  },
-];
-
 const faqLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: faq.map((f) => ({
-    "@type": "Question",
-    name: f.q,
-    acceptedAnswer: { "@type": "Answer", text: f.a },
-  })),
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "How do I add page numbers to a PDF?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Open the file, choose a position and a format, optionally set the starting number and margin, then click Add page numbers. The numbers are drawn as new text on every page and a copy is downloaded.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Will the numbers be cut off when printed?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Only if they fall inside the trim area. Commercial printers trim 3 to 5 mm from each edge, and most office printers cannot print closer than about 5 mm. Keep the margin at 20 points (about 7 mm) or more to stay safe.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "My document already has page numbers printed on it. What happens?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "You get two sets. The tool cannot detect existing numbers — they are part of the page content, indistinguishable from any other text. Cover them first, crop the footer, or restart from a version without numbers.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How do I continue numbering across several files?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Set the start value to one more than the last page of the previous file. If part one ends at 40, start part two at 41. If you plan to merge the files later, note that the merged document keeps the stamped numbers rather than recomputing them.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Can I skip the cover page?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes — enable Skip the first page. Numbering still counts page 1, so the second page shows 2. That is the convention most reports use. If you want the first numbered page to display 1, skip the cover and set the start value to 0.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Does adding page numbers reduce quality?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "No. The numbers are added as an extra text layer on top of the existing page. Images, existing text and vectors are untouched, and the file grows by a few kilobytes.",
+      },
+    },
+  ],
 };
 
-export default function AddPageNumbersPage() {
+export default function PageNumbersPage() {
   return (
     <main className="wrap">
       <div className="hero">
-        <h1>Add Page Numbers to PDF</h1>
+        <h1>Add Page Numbers to a PDF</h1>
         <p className="sub">
-          Number every page in seconds — choose the corner, the format and where to start.
+          Stamp consistent numbers on every page — position, format and starting value are yours to
+          choose.
         </p>
         <div className="badges">
           <span className="badge">100% in your browser</span>
-          <span className="badge">Files never uploaded</span>
+          <span className="badge">Baked into the file</span>
           <span className="badge">Free · No signup · No watermark</span>
         </div>
       </div>
@@ -72,110 +90,233 @@ export default function AddPageNumbersPage() {
       </section>
 
       <article className="content">
-        <h2>Why add page numbers to a PDF?</h2>
-        <p>
-          A PDF without page numbers is hard to work with the moment it leaves your screen. Page
-          numbers are what let a reader say &ldquo;see page 7&rdquo;, let a reviewer cite an exact
-          spot, and let a printer assemble sheets in the right order. They matter most in:
-        </p>
-        <ul>
-          <li>
-            <b>Contracts and legal packs</b> — every page needs a reference so nothing can be
-            swapped or missed.
-          </li>
-          <li>
-            <b>Academic papers and reports</b> — citations, tables of contents and appendices rely on
-            numbering.
-          </li>
-          <li>
-            <b>Scanned documents</b> — scans carry no numbering at all, so a 40-page scan becomes
-            impossible to navigate.
-          </li>
-          <li>
-            <b>Print-ready files</b> — you need to confirm the sheet count and check page order before
-            sending to a printer.
-          </li>
-          <li>
-            <b>Merged files</b> — when you combine several PDFs, numbering keeps the new document
-            readable as one unit.
-          </li>
-        </ul>
-
-        <h2>How to add page numbers to a PDF</h2>
+        <h2>How to add page numbers</h2>
         <ol className="steps">
           <li>
-            <b>Open your PDF</b> — drag it into the box above. It stays on your device; nothing is
-            uploaded.
+            <b>Open the PDF.</b> It is read locally — a confidential document never leaves your
+            machine.
           </li>
           <li>
-            <b>Choose where and how</b> — position (six corners), format (<code>1</code>,{" "}
-            <code>1 / 12</code>, <code>Page 1</code>, <code>Page 1 of 12</code>), font size and
-            margin.
+            <b>Pick a position and format.</b> Bottom-centre with &ldquo;1 / 12&rdquo; is the most
+            common combination for reports; bottom-right with a plain number suits print.
           </li>
           <li>
-            <b>Set the start number</b> and tick <i>Skip the cover page</i> if your first page
-            shouldn&apos;t be counted.
-          </li>
-          <li>
-            <b>Click Add page numbers</b> and the numbered PDF downloads instantly.
+            <b>Adjust margin and size if needed</b>, then click Add page numbers. A new copy is
+            downloaded with the numbers drawn in.
           </li>
         </ol>
 
-        <h2>Which format should you choose?</h2>
+        <h2>Choose the margin before you choose the position</h2>
         <p>
-          It depends on the document. A <b>plain number</b> (<code>7</code>) is quiet and works for
-          almost anything. <b>7 / 12</b> is best when the reader needs to know how far through they
-          are. <b>Page 7</b> reads well in formal reports, while <b>Page 7 of 12</b> is the safest
-          choice for contracts, where the total page count itself is part of the agreement — it makes
-          a missing page obvious at a glance.
+          This is where most page-numbering goes wrong, and it is a print-production problem rather
+          than a software one.
+        </p>
+        <p>
+          A page has three relevant boundaries: the <b>MediaBox</b> (the physical sheet), the{" "}
+          <b>trim box</b> (what the final product will be after cutting), and the{" "}
+          <b>safe area</b> (where content will not be clipped by the printer&apos;s unprintable
+          margin). Numbers placed outside the safe area look fine on screen and disappear on paper.
+        </p>
+        <div className="tbl-wrap">
+          <table className="tbl">
+            <thead>
+              <tr>
+                <th>Margin</th>
+                <th>Millimetres from edge</th>
+                <th>Safe for</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="num">14 pt</td>
+                <td>~5 mm</td>
+                <td>Nothing. Office printers clip here.</td>
+              </tr>
+              <tr>
+                <td className="num">20 pt</td>
+                <td>~7 mm</td>
+                <td>Home and office printing, documents read on screen.</td>
+              </tr>
+              <tr>
+                <td className="num">28 pt</td>
+                <td>~10 mm</td>
+                <td>Commercial printing with bleed and trim. The default.</td>
+              </tr>
+              <tr>
+                <td className="num">40 pt</td>
+                <td>~14 mm</td>
+                <td>Bound documents, where the gutter eats part of the inner edge.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div className="note">
+          <b>Bound documents need asymmetry.</b> If the document will be stitched or glued, the inner
+          margin loses 5-10 mm to the spine. Numbers centred at the bottom survive that; numbers at
+          the bottom-left or bottom-right on a two-sided document will drift toward the spine on every
+          other page.
+        </div>
+
+        <h2>The double-numbering trap</h2>
+        <p>
+          If the PDF already has numbers printed in the footer, this tool cannot see them. To the
+          software, an existing &ldquo;Page 7&rdquo; is just characters in the content stream, exactly
+          like the body text. Stamping new numbers on top gives you two sets, usually overlapping.
+        </p>
+        <p>
+          Three ways out, in order of preference:
+        </p>
+        <ul>
+          <li>
+            <b>Start from the source document</b> that did not have numbers — a Word or Google Docs
+            export, before anyone added a footer.
+          </li>
+          <li>
+            <b>Push the new numbers into a clear area</b> — if the old numbers sit bottom-centre, put
+            the new ones top-right and accept the redundancy.
+          </li>
+          <li>
+            <b>Cover the old footer</b> with a white rectangle in an editor, then number. This only
+            works when the footer area has a plain background.
+          </li>
+        </ul>
+
+        <h2>Continuing numbering across merged documents</h2>
+        <p>
+          A common workflow: three chapters exported separately, each starting at 1, which need to
+          read as one continuous document. The order of operations matters.
+        </p>
+        <ol className="steps">
+          <li>
+            <b>Merge first, then number.</b> Merging produces one file whose page count is known, so
+            &ldquo;1 / 120&rdquo; is correct on every page.
+          </li>
+          <li>
+            <b>If you must number first,</b> set the start value by hand: chapter 1 starts at 1,
+            chapter 2 at 1 + (pages in chapter 1), chapter 3 at the running total.
+          </li>
+          <li>
+            <b>Avoid &ldquo;1 / N&rdquo; format before merging.</b> Each file will claim its own total,
+            so page 40 of a 120-page document reads &ldquo;40 / 40&rdquo;. Plain numbers survive
+            merging; totals do not.
+          </li>
+        </ol>
+
+        <h2>Front matter, Roman numerals and restarts</h2>
+        <p>
+          Proper books number front matter with i, ii, iii and restart at 1 for the body. That is done
+          with PDF <b>page labels</b>, a document-level structure that assigns a display name to each
+          page without drawing anything. This tool stamps visible text instead, which is a different
+          mechanism:
+        </p>
+        <div className="tbl-wrap">
+          <table className="tbl">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Stamped numbers (this tool)</th>
+                <th>Page labels</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Visible on the page</td>
+                <td>Yes — it is drawn text</td>
+                <td>No, only in the reader&apos;s page field</td>
+              </tr>
+              <tr>
+                <td>Survives printing</td>
+                <td>Yes</td>
+                <td>No</td>
+              </tr>
+              <tr>
+                <td>Roman numerals, restarts</td>
+                <td>Not supported</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <td>Survives a merge or an extract</td>
+                <td>Yes, because it is part of the page</td>
+                <td>Usually lost</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          For a report or a contract, stamped numbers are what you want — they are visible to a reader
+          holding paper. For a book with front matter, you need page labels, which means a desktop
+          layout tool.
         </p>
 
-        <h2>Add page numbers without Acrobat or Word</h2>
+        <h2>Readability on scanned pages</h2>
         <p>
-          Adobe Acrobat Pro can add headers and footers, but it is a paid subscription and requires
-          installing desktop software. Microsoft Word can insert page numbers only if you still have
-          the original <code>.docx</code> — it cannot number an existing PDF. PDFSnip works directly
-          on the PDF you already have, in any modern browser, on Windows, macOS, Linux, iPhone,
-          Android and Chromebook.
+          Numbers are drawn in black. On a clean white page that is perfect. On a dark scan — a photo
+          of a page in poor light, or a document printed on coloured stock — black numbers on a dark
+          background can be nearly invisible.
         </p>
-
-        <h2>What about scanned documents and rotated pages?</h2>
         <p>
-          Phone scans frequently store pages with a rotation flag instead of physically turning the
-          content. A naive numbering tool then prints the number sideways or in the wrong corner.
-          PDFSnip reads that flag and places the number in the visually correct position, upright —
-          so the numbering matches what you see on screen and what comes out of the printer.
+          Before numbering a scanned batch, check one page: if the bottom margin is dark, move the
+          numbers to whichever margin is lightest, and increase the font size by two or three points.
+          A 14 pt number reads at arm&apos;s length; an 11 pt number on a grey background does not.
         </p>
 
         <h2>Frequently asked questions</h2>
         <div className="faq">
-          {faq.map((f) => (
-            <details key={f.q}>
-              <summary>{f.q}</summary>
-              <p>{f.a}</p>
-            </details>
-          ))}
+          <details>
+            <summary>Will the numbers be cut off when printed?</summary>
+            <p>
+              Only if they sit inside the trim area. Keep the margin at 20 pt (about 7 mm) or more;
+              commercial printing with trim needs closer to 28 pt.
+            </p>
+          </details>
+          <details>
+            <summary>My PDF already has numbers. What happens?</summary>
+            <p>
+              You get two sets, because existing numbers are just text in the page content and cannot
+              be detected. Start from a source without numbers, or place the new ones elsewhere.
+            </p>
+          </details>
+          <details>
+            <summary>How do I continue numbering across files?</summary>
+            <p>
+              Merge first and number the merged file. If you must number separately, set each start
+              value to the running total, and avoid the &ldquo;1 / N&rdquo; format until after the
+              merge.
+            </p>
+          </details>
+          <details>
+            <summary>Can I skip the cover page?</summary>
+            <p>
+              Yes — enable Skip the first page. The count still includes it, so page 2 displays 2. To
+              make the first numbered page read 1 instead, set the start value to 0.
+            </p>
+          </details>
+          <details>
+            <summary>Does this change the reader&apos;s page counter?</summary>
+            <p>
+              No. It draws visible text on the page. The page number shown in your PDF reader&apos;s
+              toolbar still reflects the physical position in the file.
+            </p>
+          </details>
         </div>
 
         <h2>More free PDF tools</h2>
         <ul>
           <li>
-            <a href="/">Extract pages from a PDF</a>
+            <a href="/merge-pdf">Merge PDF files</a> — combine before numbering.
           </li>
           <li>
-            <a href="/delete-pages-from-pdf">Delete pages from a PDF</a>
+            <a href="/delete-pages-from-pdf">Delete pages from a PDF</a> — renumber afterwards.
+          </li>
+          <li>
+            <a href="/">Extract pages from a PDF</a>
           </li>
           <li>
             <a href="/rotate-pdf">Rotate PDF pages</a>
           </li>
           <li>
-            <a href="/merge-pdf">Merge PDF files</a>
-          </li>
-          <li>
-            <a href="/split-pdf">Split a PDF into multiple files</a>
-          </li>
-          <li>
-            <a href="/how-to-add-page-numbers-to-a-pdf">Guide: numbering PDFs step by step</a>
+            <a href="/how-to-add-page-numbers-to-a-pdf">How to add page numbers to a PDF</a> — the
+            longer guide.
           </li>
         </ul>
       </article>

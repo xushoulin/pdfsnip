@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "How to Rotate a PDF (Free, No Software to Install)",
+  title: "How to Rotate a PDF — 5 Methods, and Why It Sometimes Doesn't Stick",
   description:
-    "Turn a sideways or upside-down PDF right-side up — on a Mac with Preview, with Adobe Acrobat, or in any browser. Learn the difference between a temporary view rotation and a saved one.",
+    "Rotate PDF pages with Preview, Acrobat, the browser, qpdf or pdftk — and understand why a rotated page sometimes still looks sideways in another app.",
   alternates: { canonical: "/how-to-rotate-a-pdf" },
   openGraph: {
-    title: "How to Rotate a PDF (Free, No Software to Install)",
-    description:
-      "Fix a sideways PDF permanently — Preview on Mac, Acrobat, or a private browser tool. No install, no upload.",
+    title: "How to Rotate a PDF — 5 Methods Compared",
+    description: "Five ways to rotate pages, plus the reason rotation sometimes fails to stick.",
     url: "/how-to-rotate-a-pdf",
     type: "article",
   },
@@ -20,26 +19,42 @@ const faqLd = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "How do I rotate a PDF for free?",
+      name: "How do I rotate a PDF permanently?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "On a Mac, open the PDF in Preview, select the pages in the thumbnail sidebar, and choose Tools → Rotate Left/Right; then Save. On any device, open the PDFSnip rotate tool in your browser, pick 90° or 180°, and download — no account and no install.",
+        text: "Rotate the page and then save the file. In Preview that means Tools > Rotate Right followed by Command-S; in a browser tool the rotation is written into the downloaded copy; on the command line qpdf writes it with --rotate. Rotating the view without saving changes nothing in the document.",
       },
     },
     {
       "@type": "Question",
-      name: "Why does my PDF rotate back when I reopen it?",
+      name: "Why does my rotated PDF still look sideways in another app?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Many viewers offer a temporary 'view rotation' that is not saved into the file. The page looks right while the document is open, but the saved PDF keeps its original orientation. To make the rotation permanent, use a tool that writes the new angle into the file — Preview's Save, or the PDFSnip rotate tool.",
+        text: "Because some scanners store the image rotated while declaring the page upright. Viewers that honour the page's /Rotate value show one thing, viewers that auto-correct from image content show another. The file has an internal contradiction, and flattening it by printing to PDF is the reliable fix.",
       },
     },
     {
       "@type": "Question",
-      name: "Can I rotate only some pages, not the whole document?",
+      name: "Does rotating a PDF in Preview save automatically?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. In Preview, select just the thumbnails you want before rotating. In PDFSnip, the rotation is applied to the pages you select (or all pages if you leave the selection empty), so mixed-orientation documents are easy to fix page by page.",
+        text: "No. Preview marks the document as edited and the rotation only exists in the open window until you save. Closing without saving discards it — which is the most common reason people report that rotation did not work.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How do I rotate a PDF from the command line?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "With qpdf: qpdf in.pdf out.pdf --rotate=+90:1-5 rotates pages 1 to 5 clockwise by 90 degrees. With pdftk: pdftk in.pdf cat 1-5east output out.pdf, where east is 90 degrees clockwise, west 270, south 180 and north 0.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Does rotating reduce quality?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "No. Rotation is a page-level attribute, not an image transformation, so no pixel is re-encoded. The file size changes by a few bytes.",
       },
     },
   ],
@@ -51,144 +66,204 @@ export default function RotateGuide() {
       <div className="hero">
         <h1>How to Rotate a PDF</h1>
         <p className="sub">
-          Turn a sideways or upside-down PDF right-side up — no software to install, and nothing uploaded.
+          Five methods, the exact keystrokes, and the two reasons rotation appears not to work.
         </p>
       </div>
 
       <article className="content">
+        <p className="byline">Last reviewed November 2026</p>
+
         <p>
-          A scanner, a phone camera, or an exported spreadsheet can all leave a PDF at the wrong angle.
-          The fix is simple, but there is one trap worth knowing first: some programs only rotate the
-          <i> view</i>, not the file. If your PDF &quot;flips back&quot; when you reopen it, you used a
-          temporary rotation. Below are the ways to rotate a PDF <b>permanently</b>.
+          Rotating a PDF looks like the simplest operation there is, and it generates the most
+          confusion — because there are two different things called &ldquo;rotate&rdquo;: turning the
+          page on your screen, and changing the document. Only one of them survives closing the file.
         </p>
 
-        <h2>Method 1 — Preview on Mac (free, Mac-only)</h2>
+        <h2>Method 1 — Preview on macOS</h2>
         <ol className="steps">
+          <li>Open the PDF in <b>Preview</b>.</li>
           <li>
-            Open the PDF in <b>Preview</b>.
+            Go to the page you want turned. For a range, select thumbnails first with{" "}
+            <span className="kbd">View → Thumbnails</span>.
           </li>
           <li>
-            Show the thumbnail sidebar: <b>View → Thumbnails</b>.
+            <b>Tools → Rotate Right</b> (<span className="kbd">⌘R</span>) or <b>Rotate Left</b>.
           </li>
           <li>
-            Select the pages to rotate (click one, or Shift-click a range).
-          </li>
-          <li>
-            Choose <b>Tools → Rotate Left</b> or <b>Rotate Right</b> (or use ⌘L / ⌘R).
-          </li>
-          <li>
-            Press <b>Save</b> — the new orientation is written into the file.
+            <b>Save</b> with <span className="kbd">⌘S</span>.
           </li>
         </ol>
+        <div className="note warn">
+          <b>Step 4 is the step people skip.</b> Preview shows the rotation immediately, so it looks
+          done. But until you save, the change exists only in the open window. Close the file, reopen
+          it, and the page is sideways again — which is why &ldquo;rotating in Preview does not
+          work&rdquo; is such a common complaint.
+        </div>
         <p>
-          <i>Note:</i> this is Mac-only. The toolbar rotate button rotates the view only until you
-          Save, which is exactly the trap above.
+          Preview rotates whichever pages are selected in the sidebar. Select nothing and it rotates
+          the page currently on screen.
         </p>
 
-        <h2>Method 2 — Adobe Acrobat (paid subscription)</h2>
-        <ol className="steps">
-          <li>
-            Open the PDF in Acrobat and switch to <b>Organize Pages</b>.
-          </li>
-          <li>
-            Select the page thumbnails you want to turn.
-          </li>
-          <li>
-            Click the <b>Rotate</b> icon and choose the direction.
-          </li>
-          <li>
-            Save the file.
-          </li>
-        </ol>
+        <h2>Method 2 — Acrobat (desktop)</h2>
         <p>
-          <i>Note:</i> the desktop app saves the rotation locally; the Acrobat web tool uploads your
-          file first — avoid it for confidential documents. Acrobat also requires a paid plan.
+          Open the file, choose <b>Tools → Organize Pages</b>, select the pages, then use the rotate
+          buttons in the toolbar, and save. The desktop app turns the action into a real page
+          attribute. The free web version can rotate too, but it uploads the file.
         </p>
 
-        <h2>Method 3 — PDFSnip, in any browser (free + private)</h2>
-        <ol className="steps">
-          <li>
-            Open the <a href="/rotate-pdf">PDFSnip rotate tool</a>.
-          </li>
-          <li>
-            Add your PDF — it opens locally on your device.
-          </li>
-          <li>
-            Pick <b>90°</b> or <b>180°</b>, and choose which pages to rotate (or all).
-          </li>
-          <li>
-            Click <b>Rotate</b> — a correctly oriented PDF downloads at original quality.
-          </li>
-        </ol>
+        <h2>Method 3 — In the browser, without installing anything</h2>
         <p>
-          This works on Windows, Mac, Linux, iOS and Android with no install, and your file is never
-          uploaded.
+          The <a href="/rotate-pdf">rotate tool on this site</a> lets you type a page range, pick 90,
+          180 or 270 degrees, and writes the rotation into the downloaded file. It works on Chromebooks
+          and locked-down work machines, and the file is processed locally — nothing is uploaded.
+        </p>
+        <p>
+          One practical advantage over desktop apps: you see the page thumbnails and the page numbers
+          at the same time, so working out which pages of a 90-page scan are upside down takes seconds
+          instead of scrolling.
         </p>
 
-        <h2>Quick comparison</h2>
+        <h2>Method 4 — qpdf on the command line</h2>
+        <pre className="tbl-wrap">
+          <code className="inline">
+            {`# rotate pages 1-5 by 90 degrees clockwise
+qpdf in.pdf out.pdf --rotate=+90:1-5
+
+# rotate every page 180 degrees
+qpdf in.pdf out.pdf --rotate=180:1-z
+
+# rotate pages 2 and 7 counter-clockwise
+qpdf in.pdf out.pdf --rotate=-90:2,7`}
+          </code>
+        </pre>
+        <p>
+          The syntax is <code className="inline">angle:page-range</code>, and the angle is relative:{" "}
+          <code className="inline">+90</code> adds to the page&apos;s current rotation rather than
+          setting it. Given a page already at 90, <code className="inline">+90</code> makes it 180.
+        </p>
+
+        <h2>Method 5 — pdftk, if you already have it</h2>
+        <pre className="tbl-wrap">
+          <code className="inline">{`pdftk in.pdf cat 1-5east output out.pdf`}</code>
+        </pre>
+        <p>
+          The suffixes are compass directions rather than angles: <b>north</b> 0°, <b>east</b> 90°
+          clockwise, <b>south</b> 180°, <b>west</b> 270°. pdftk is abandoned upstream and awkward to
+          install on Apple Silicon, so treat it as a fallback.
+        </p>
+
+        <h2>Why rotation sometimes does not stick</h2>
+        <p>Two completely different problems; the fix depends on which one you have.</p>
+        <div className="tbl-wrap">
+          <table className="tbl">
+            <thead>
+              <tr>
+                <th>Symptom</th>
+                <th>Cause</th>
+                <th>Fix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Looks rotated, reverts after closing</td>
+                <td>The change was never saved to the file.</td>
+                <td>
+                  Save (<span className="kbd">⌘S</span> / <span className="kbd">Ctrl+S</span>), or use
+                  a tool that downloads a new file.
+                </td>
+              </tr>
+              <tr>
+                <td>Correct in one app, sideways in another</td>
+                <td>
+                  The page is upright but the image inside it is turned — the file contradicts itself.
+                </td>
+                <td>Flatten it: print to PDF, then rotate the flattened copy.</td>
+              </tr>
+              <tr>
+                <td>Rotating again makes it worse</td>
+                <td>Rotation accumulates rather than setting an absolute value.</td>
+                <td>Work out the difference you need. Two 90° rotations equal 180°.</td>
+              </tr>
+              <tr>
+                <td>Only some pages are wrong</td>
+                <td>A mixed-orientation document.</td>
+                <td>Use thumbnails to identify the pages, then rotate just those.</td>
+              </tr>
+              <tr>
+                <td>Text upright but the page is landscape</td>
+                <td>The page really is landscape; rotating makes the text sideways.</td>
+                <td>Nothing to fix — this is the intended orientation.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Fixing it at the source, when you control the scan</h2>
         <ul>
           <li>
-            <b>Cost:</b> Preview and PDFSnip are free; Acrobat requires a subscription.
+            <b>Set the orientation on the scanner</b>, not afterwards. Duplex feeders in particular
+            produce alternating orientations when the second side is scanned upside down.
           </li>
           <li>
-            <b>Platform:</b> Preview is Mac-only; Acrobat and PDFSnip work across devices.
+            <b>Use auto-rotate with care.</b> OCR-based auto-rotation gets short documents wrong,
+            especially pages that are mostly a table or an image.
           </li>
           <li>
-            <b>Privacy:</b> Preview and PDFSnip process locally; cloud rotate sites upload your file.
-          </li>
-          <li>
-            <b>Gotcha:</b> a view-only rotation is not saved — make sure you actually Save or download.
+            <b>Do not re-photograph a rotated printout.</b> Turning the paper does not turn the text
+            layer; it just adds another generation of blur.
           </li>
         </ul>
-
-        <h2>Which method should you pick?</h2>
-        <p>
-          On a Mac, <b>Preview</b> is the fastest local option. If you want it to work on any device,
-          need no install, and guarantee the file never leaves your machine, use{" "}
-          <a href="/rotate-pdf">PDFSnip</a>. Avoid cloud rotate tools for contracts, tax forms or
-          medical records.
-        </p>
 
         <h2>Frequently asked questions</h2>
         <div className="faq">
           <details>
-            <summary>How do I rotate a PDF for free?</summary>
+            <summary>How do I rotate a PDF permanently?</summary>
             <p>
-              On a Mac, open the PDF in Preview, select the pages in the thumbnail sidebar, and choose
-              Tools → Rotate Left/Right; then Save. On any device, open the PDFSnip rotate tool in your
-              browser, pick 90° or 180°, and download — no account and no install.
+              Rotate and then save. In Preview: Tools → Rotate Right, then{" "}
+              <span className="kbd">⌘S</span>. A browser tool writes the rotation into the downloaded
+              copy; qpdf writes it with <code className="inline">--rotate</code>.
             </p>
           </details>
           <details>
-            <summary>Why does my PDF rotate back when I reopen it?</summary>
+            <summary>Why does my rotated PDF still look sideways in another app?</summary>
             <p>
-              Many viewers offer a temporary &quot;view rotation&quot; that is not saved into the
-              file. The page looks right while the document is open, but the saved PDF keeps its
-              original orientation. To make the rotation permanent, use a tool that writes the new
-              angle into the file — Preview&apos;s Save, or the PDFSnip rotate tool.
+              The page and the image inside it disagree about orientation. Flatten the file by printing
+              to PDF, then rotate the flattened copy.
             </p>
           </details>
           <details>
-            <summary>Can I rotate only some pages, not the whole document?</summary>
+            <summary>Does rotating in Preview save automatically?</summary>
             <p>
-              Yes. In Preview, select just the thumbnails you want before rotating. In PDFSnip, the
-              rotation is applied to the pages you select (or all pages if you leave the selection
-              empty), so mixed-orientation documents are easy to fix page by page.
+              No. Until you save, the rotation lives only in the open window — the single most common
+              reason people think it failed.
             </p>
+          </details>
+          <details>
+            <summary>How do I rotate from the command line?</summary>
+            <p>
+              <code className="inline">qpdf in.pdf out.pdf --rotate=+90:1-5</code>, or{" "}
+              <code className="inline">pdftk in.pdf cat 1-5east output out.pdf</code>.
+            </p>
+          </details>
+          <details>
+            <summary>Does rotating reduce quality?</summary>
+            <p>No. It changes a page attribute, not the pixels. File size moves by a few bytes.</p>
           </details>
         </div>
 
-        <h2>Related free tools</h2>
+        <h2>Related</h2>
         <ul>
           <li>
-            <a href="/rotate-pdf">Rotate a PDF (the tool)</a>
+            <a href="/rotate-pdf">Rotate PDF pages</a> — the tool, with the full angle reference.
+          </li>
+          <li>
+            <a href="/">Extract pages from a PDF</a>
           </li>
           <li>
             <a href="/delete-pages-from-pdf">Delete pages from a PDF</a>
           </li>
           <li>
-            <a href="/split-pdf">Split a PDF into multiple files</a>
+            <a href="/extract-pages-from-pdf-on-mac">Extracting pages on a Mac</a>
           </li>
         </ul>
       </article>
